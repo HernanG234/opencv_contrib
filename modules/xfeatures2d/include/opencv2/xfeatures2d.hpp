@@ -330,6 +330,12 @@ public:
     CV_WRAP virtual int getFastThreshold() const = 0;
 };
 
+class CV_EXPORTS_W LDB : public Feature2D {
+
+public:
+	CV_WRAP static Ptr<LDB> create(int patchSize = 48, bool flag = false);
+};
+
 /** @brief Class implementing VGG (Oxford Visual Geometry Group) descriptor trained end to end
 using "Descriptor Learning Using Convex Optimisation" (DLCO) aparatus described in @cite Simonyan14.
 
