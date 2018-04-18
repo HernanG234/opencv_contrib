@@ -261,11 +261,7 @@ static void computeLdbDescriptor(const cv::KeyPoint& kpt,
 								 const cv::Mat& sum,
 								 unsigned char * desc,
 								 const int& patch_size,
-								 const vector<vector<int> >& coordinates2by2_,
-								 const vector<vector<int> >& coordinates3by3_,
-								 const vector<vector<int> >& coordinates4by4_,
-								 const vector<vector<int> >& coordinates5by5_,
-								 const vector<int>& randSequence, bool flag)
+								 bool flag)
 {
 #ifdef TRAINING
 	for(int i = 0; i < randSequence.size(); i++)
@@ -614,7 +610,7 @@ static void computeDescriptors(const Mat& image,
 
 	for (size_t i = 0; i < keypoints.size(); i++)
 		computeLdbDescriptor(keypoints[i], image, integral_image, descriptors.ptr((int)i),
-		patchSize, coordinates2by2_, coordinates3by3_,	coordinates4by4_, coordinates5by5_,randomSequence_, flag);
+		patchSize, flag);
 }
 
 static void initializeLdbPattern(const int& nlevels, const int& patchSize)
@@ -659,7 +655,6 @@ public:
     virtual int defaultNorm() const CV_OVERRIDE;
 	// returns the descriptor size in bytes
 	virtual int descriptorSize() const CV_OVERRIDE;
-
 
 protected:
 
@@ -800,7 +795,7 @@ void LDB_Impl::compute( InputArray _imageorig,
 		vector<KeyPoint>& keypoints = allKeypoints[level];
 		if(keypoints.size() > 1)
 			KeyPointsFilter::runByImageBorder(keypoints, workingMat.size(), border);
-		int nkeypoints = (int)keypoints.size();
+		nkeypoints = (int)keypoints.size();
 
 		// Compute the descriptors
 		Mat desc;
