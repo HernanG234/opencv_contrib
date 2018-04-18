@@ -450,7 +450,7 @@ computeBAFTDescriptors( const Mat& imagePyramid, const std::vector<Rect>& layerI
     // Compute skew matrix for each keypoint
     int nkeypoints = (int)keypoints.size();
     float scale_modifier = (float)patchSize / 50.f;
-    Mat skew(nkeypoints, 4, CV_32F), points_kp, s, img_roi;
+    Mat skew(nkeypoints, 4, CV_32F), points_kp, img_roi;
     computeSkew(harrisResponse, skew, nkeypoints, fullRotation);
 
     // Now for each keypoint, collect data for each point and construct the descriptor
@@ -722,7 +722,7 @@ static void computeImagePyramid(const Mat& image,
         wholeLinfo  = Rect(linfo.x - border, linfo.y - border,
                            sz.width + border*2, sz.height + border*2);
         extImg      = imagePyramid(wholeLinfo);
-        Mat currImg = extImg(Rect(border, border, sz.width, sz.height)), extMask, currMask;
+        Mat currImg = extImg(Rect(border, border, sz.width, sz.height)), extMask_curr, currMask;
 
         resize(prevImg, currImg, sz, 0, 0, INTER_LINEAR);
         copyMakeBorder(currImg, extImg, border, border, border, border,
@@ -738,7 +738,7 @@ static void computeImagePyramid(const Mat& image,
         if( !mask.empty() )
         {
             extMask     = maskPyramid(wholeLinfo);
-            currMask    = extMask(Rect(border, border, sz.width, sz.height));
+            currMask    = extMask_curr(Rect(border, border, sz.width, sz.height));
             resize(prevMask, currMask, sz, 0, 0, INTER_LINEAR);
             threshold(currMask, currMask, 254, 0, THRESH_TOZERO);
             copyMakeBorder(currMask, extMask, border, border, border, border,
