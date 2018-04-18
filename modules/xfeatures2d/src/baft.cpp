@@ -689,8 +689,6 @@ static void computeImagePyramid(const Mat& image,
                                 int border,
                                 int nLevels,
                                 std::vector<Rect> layerInfo,
-                                std::vector<int> layerOfs,
-                                std::vector<float> layerScale,
                                 Mat& imagePyramid, Mat& mask,
                                 Mat& maskPyramid,
                                 Mat& diff_x, Mat& diff_y)
@@ -898,8 +896,7 @@ void BAFT_Impl::detectAndCompute( InputArray _image, InputArray _mask,
     if( !mask.empty() )
         maskPyramid.create(bufSize, CV_8U);
     computeImagePyramid(image, border, nLevels, layerInfo,
-                        layerOfs, layerScale, imagePyramid, mask,
-                        maskPyramid, diff_x, diff_y);
+                        imagePyramid, mask, maskPyramid, diff_x, diff_y);
 
     // Get keypoints, those will hopefully be far enough from the border that no check will be required for the descriptor
     if( do_keypoints ) {
