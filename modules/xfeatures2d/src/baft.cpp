@@ -517,43 +517,43 @@ public:
         fastThreshold(_fastThreshold)
     {}
 
-    void setMaxFeatures(int maxFeatures) { nfeatures = maxFeatures; }
-    int getMaxFeatures() const { return nfeatures; }
+    void setMaxFeatures(int maxFeatures) CV_OVERRIDE { nfeatures = maxFeatures; }
+    int getMaxFeatures() const CV_OVERRIDE { return nfeatures; }
 
-    void setSize(int size_) { size = size_; }
-    int getSize() const { return size; }
+    void setSize(int size_) CV_OVERRIDE { size = size_; }
+    int getSize() const CV_OVERRIDE { return size; }
 
-    void setPatchSize(int patchSize_) { patchSize = patchSize_; }
-    int getPatchSize() const { return patchSize; }
+    void setPatchSize(int patchSize_) CV_OVERRIDE { patchSize = patchSize_; }
+    int getPatchSize() const CV_OVERRIDE { return patchSize; }
 
-    void setGaussianBlurSize(int gaussianBlurSize_) { gaussianBlurSize = gaussianBlurSize_; }
-    int getGaussianBlurSize() const { return gaussianBlurSize; }
+    void setGaussianBlurSize(int gaussianBlurSize_) CV_OVERRIDE { gaussianBlurSize = gaussianBlurSize_; }
+    int getGaussianBlurSize() const CV_OVERRIDE { return gaussianBlurSize; }
 
-    void setFullRotation(bool fullRotation_) { fullRotation = fullRotation_; }
-    bool getFullRotation() const { return fullRotation; }
+    void setFullRotation(bool fullRotation_) CV_OVERRIDE { fullRotation = fullRotation_; }
+    bool getFullRotation() const CV_OVERRIDE { return fullRotation; }
 
-    void setScaleFactor(double scaleFactor_) { scaleFactor = scaleFactor_; }
-    double getScaleFactor() const { return scaleFactor; }
+    void setScaleFactor(double scaleFactor_) CV_OVERRIDE { scaleFactor = scaleFactor_; }
+    double getScaleFactor() const CV_OVERRIDE { return scaleFactor; }
 
-    void setNLevels(int nlevels_) { nlevels = nlevels_; }
-    int getNLevels() const { return nlevels; }
+    void setNLevels(int nlevels_) CV_OVERRIDE { nlevels = nlevels_; }
+    int getNLevels() const CV_OVERRIDE { return nlevels; }
 
-    void setEdgeThreshold(int edgeThreshold_) { edgeThreshold = edgeThreshold_; }
-    int getEdgeThreshold() const { return edgeThreshold; }
+    void setEdgeThreshold(int edgeThreshold_) CV_OVERRIDE { edgeThreshold = edgeThreshold_; }
+    int getEdgeThreshold() const CV_OVERRIDE { return edgeThreshold; }
 
-    void setFastThreshold(int fastThreshold_) { fastThreshold = fastThreshold_; }
-    int getFastThreshold() const { return fastThreshold; }
+    void setFastThreshold(int fastThreshold_) CV_OVERRIDE { fastThreshold = fastThreshold_; }
+    int getFastThreshold() const CV_OVERRIDE { return fastThreshold; }
 
     // returns the descriptor size in bytes
-    int descriptorSize() const;
+    int descriptorSize() const CV_OVERRIDE;
     // returns the descriptor type
-    int descriptorType() const;
+    int descriptorType() const CV_OVERRIDE;
     // returns the default norm type
-    int defaultNorm() const;
+    int defaultNorm() const CV_OVERRIDE;
 
     // Compute the BAFT_Impl features and descriptors on an image
     void detectAndCompute( InputArray image, InputArray mask, std::vector<KeyPoint>& keypoints,
-                     OutputArray descriptors, bool useProvidedKeypoints=false );
+                     OutputArray descriptors, bool useProvidedKeypoints=false ) CV_OVERRIDE;
 
 protected:
 
