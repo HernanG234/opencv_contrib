@@ -652,13 +652,13 @@ public:
 
 	LDB_Impl(int _patchSize = 48, bool _flag = false);
 	// Compute the LDB features and descriptors on an image
-	virtual void compute( InputArray image, vector<KeyPoint>& keypoints, OutputArray descriptors);
+	virtual void compute( InputArray image, vector<KeyPoint>& keypoints, OutputArray descriptors) CV_OVERRIDE;
 	// returns the descriptor type
-    virtual int descriptorType() const;
+    virtual int descriptorType() const CV_OVERRIDE;
     // returns the default norm type
-    virtual int defaultNorm() const;
+    virtual int defaultNorm() const CV_OVERRIDE;
 	// returns the descriptor size in bytes
-	virtual int descriptorSize() const;
+	virtual int descriptorSize() const CV_OVERRIDE;
 
 
 protected:
